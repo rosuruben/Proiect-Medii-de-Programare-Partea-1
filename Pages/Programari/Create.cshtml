@@ -1,0 +1,109 @@
+﻿@page
+@model ClinicaVeterinaraP1.Pages.Programari.CreateModel
+
+@{
+    ViewData["Title"] = "Create Programare";
+}
+
+<h1>Create Programare</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="form-group">
+                    <label asp-for="Programare.AnimalId" class="control-label">Selectează Animal (Listă)</label>
+                    <select asp-for="Programare.AnimalId" class="form-control" asp-items="ViewBag.AnimalId"></select>
+                </div>
+            }
+            else
+            {
+                <div class="p-3 mb-3 border rounded bg-light">
+                    <h6 class="text-primary">Detalii Animal & Proprietar</h6>
+
+                    <div class="form-group">
+                        <label class="control-label">Nume Proprietar</label>
+                        <input type="text" name="numeProprietarText" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Nume Animal</label>
+                        <input type="text" name="numeAnimalText" class="form-control" required />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="control-label">Specie</label>
+                            <input type="text" name="specieText" class="form-control" placeholder="Ex: Caine" required />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="control-label">Rasa</label>
+                            <input type="text" name="rasaText" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="control-label">Sex</label>
+                            <input type="text" name="sexText" class="form-control" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="control-label">Data Nașterii Animal</label>
+                            <input type="date" name="dataNasteriiText" class="form-control" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Microcip</label>
+                        <input type="text" name="microcipText" class="form-control" />
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <label asp-for="Programare.MedicVeterinarId" class="control-label">Alege Medicul</label>
+                <select asp-for="Programare.MedicVeterinarId" class="form-control" asp-items="ViewBag.MedicVeterinarId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Programare.DataOra" class="control-label"></label>
+                <input asp-for="Programare.DataOra" class="form-control" />
+                <span asp-validation-for="Programare.DataOra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Programare.Motiv" class="control-label"></label>
+                <input asp-for="Programare.Motiv" class="form-control" />
+                <span asp-validation-for="Programare.Motiv" class="text-danger"></span>
+            </div>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="form-group">
+                    <label asp-for="Programare.Status" class="control-label"></label>
+                    <select asp-for="Programare.Status" class="form-control" asp-items="Html.GetEnumSelectList<ClinicaVeterinaraP1.Models.StatusProgramare>()"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Programare.DataCreare" class="control-label"></label>
+                    <input asp-for="Programare.DataCreare" class="form-control" />
+                </div>
+            }
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

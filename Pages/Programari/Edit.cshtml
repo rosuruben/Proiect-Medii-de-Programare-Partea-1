@@ -1,0 +1,72 @@
+﻿@page
+@model ClinicaVeterinaraP1.Pages.Programari.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editare Programare</h1>
+
+<h4>Programare</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Programare.ProgramareId" />
+
+            <div class="form-group">
+                <label asp-for="Programare.AnimalId" class="control-label">Animal</label>
+                <select asp-for="Programare.AnimalId" class="form-control" asp-items="ViewBag.AnimalId"></select>
+                <span asp-validation-for="Programare.AnimalId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Programare.MedicVeterinarId" class="control-label">Medic Veterinar</label>
+                <select asp-for="Programare.MedicVeterinarId" class="form-control" asp-items="ViewBag.MedicVeterinarId"></select>
+                <span asp-validation-for="Programare.MedicVeterinarId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Programare.DataOra" class="control-label"></label>
+                <input asp-for="Programare.DataOra" class="form-control" />
+                <span asp-validation-for="Programare.DataOra" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Programare.Motiv" class="control-label"></label>
+                <input asp-for="Programare.Motiv" class="form-control" />
+                <span asp-validation-for="Programare.Motiv" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Programare.Status" class="control-label"></label>
+                <select asp-for="Programare.Status" class="form-control"
+                        asp-items="Html.GetEnumSelectList<ClinicaVeterinaraP1.Models.StatusProgramare>()">
+                </select>
+                <span asp-validation-for="Programare.Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Programare.DataCreare" class="control-label"></label>
+                <input asp-for="Programare.DataCreare" class="form-control" readonly />
+                <span asp-validation-for="Programare.DataCreare" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

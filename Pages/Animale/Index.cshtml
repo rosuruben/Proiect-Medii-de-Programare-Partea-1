@@ -1,0 +1,78 @@
+﻿@page
+@model ClinicaVeterinaraP1.Pages.Animale.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Specie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Rasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].DataNasterii)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Microcip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Observatii)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal[0].Proprietar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Animal) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rasa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNasterii)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Microcip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observatii)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proprietar.ProprietarId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AnimalId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AnimalId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AnimalId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

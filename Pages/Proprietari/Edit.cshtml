@@ -1,0 +1,60 @@
+﻿@page
+@model ClinicaVeterinaraP1.Pages.Proprietari.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Proprietar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Proprietar.ProprietarId" />
+            <div class="form-group">
+                <label asp-for="Proprietar.Nume" class="control-label"></label>
+                <input asp-for="Proprietar.Nume" class="form-control" />
+                <span asp-validation-for="Proprietar.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proprietar.Prenume" class="control-label"></label>
+                <input asp-for="Proprietar.Prenume" class="form-control" />
+                <span asp-validation-for="Proprietar.Prenume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proprietar.Telefon" class="control-label"></label>
+                <input asp-for="Proprietar.Telefon" class="form-control" />
+                <span asp-validation-for="Proprietar.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proprietar.Email" class="control-label"></label>
+                <input asp-for="Proprietar.Email" class="form-control" />
+                <span asp-validation-for="Proprietar.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proprietar.Adresa" class="control-label"></label>
+                <input asp-for="Proprietar.Adresa" class="form-control" />
+                <span asp-validation-for="Proprietar.Adresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proprietar.DataCreare" class="control-label"></label>
+                <input asp-for="Proprietar.DataCreare" class="form-control" />
+                <span asp-validation-for="Proprietar.DataCreare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

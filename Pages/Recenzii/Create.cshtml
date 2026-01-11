@@ -1,0 +1,79 @@
+﻿@page
+@model ClinicaVeterinaraP1.Pages.Recenzii.CreateModel
+
+@{
+    ViewData["Title"] = "Create Recenzie";
+}
+
+<h1>Create Recenzie</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @if (User.IsInRole("Proprietar"))
+            {
+
+                <div class="form-group">
+                    <label class="control-label">Nume Proprietar</label>
+                    <input type="text" name="numeProprietarText" class="form-control" placeholder="Scrie numele tău..." required />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Recenzie.MedicVeterinarId" class="control-label">Alege Medicul</label>
+                    <select asp-for="Recenzie.MedicVeterinarId" class="form-control" asp-items="ViewBag.MedicVeterinarId"></select>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="Recenzie.ProgramareId" class="control-label"></label>
+                    <select asp-for="Recenzie.ProgramareId" class="form-control" asp-items="ViewBag.ProgramareId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Recenzie.MedicVeterinarId" class="control-label"></label>
+                    <select asp-for="Recenzie.MedicVeterinarId" class="form-control" asp-items="ViewBag.MedicVeterinarId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Recenzie.ProprietarId" class="control-label"></label>
+                    <select asp-for="Recenzie.ProprietarId" class="form-control" asp-items="ViewBag.ProprietarId"></select>
+                </div>
+            }
+
+            <div class="form-group">
+                <label asp-for="Recenzie.Rating" class="control-label"></label>
+                <input asp-for="Recenzie.Rating" class="form-control" placeholder="Nota 1-10" />
+                <span asp-validation-for="Recenzie.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recenzie.Comentariu" class="control-label"></label>
+                <input asp-for="Recenzie.Comentariu" class="form-control" />
+                <span asp-validation-for="Recenzie.Comentariu" class="text-danger"></span>
+            </div>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="form-group">
+                    <label asp-for="Recenzie.DataCreare" class="control-label"></label>
+                    <input asp-for="Recenzie.DataCreare" class="form-control" />
+                    <span asp-validation-for="Recenzie.DataCreare" class="text-danger"></span>
+                </div>
+            }
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

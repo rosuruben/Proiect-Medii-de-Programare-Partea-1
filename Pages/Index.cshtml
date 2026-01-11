@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Acasa";
+}
+
+<div class="text-center">
+    <h1 class="display-4 fw-bold">Bine ați venit la Clinica Animal Wellness!</h1>
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="mt-5 p-5 bg-light border rounded-3">
+            <h2>Acces Membri</h2>
+            <p>Pentru a accesa serviciile clinicii și a vedea programările, trebuie să vă autentificați.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a class="btn btn-primary btn-lg px-4 gap-3" href="/Identity/Account/Login">Logare</a>
+                <a class="btn btn-outline-secondary btn-lg px-4" href="/Identity/Account/Register">Înregistrare</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="lead mb-4 mt-3">
+            Bine ai venit, <strong>@User.Identity.Name</strong>!
+        </p>
+
+        <p class="lead mb-4">
+            Oferim servicii veterinare complete pentru sănătatea și fericirea prietenilor tăi necuvântători.
+        </p>
+
+        <img src="~/images/clinica.png"
+             alt="Interior Clinica Veterinara"
+             class="img-fluid rounded shadow-lg"
+             style="max-height: 600px; width: auto; border: 1px solid #ddd;" />
+    }
+</div>

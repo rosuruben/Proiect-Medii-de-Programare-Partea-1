@@ -1,0 +1,92 @@
+﻿@page
+@model ClinicaVeterinaraP1.Pages.Recenzii.IndexModel
+
+@{
+    ViewData["Title"] = "Recenzii";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">Recenzii Clienți</h1>
+
+    <img src="~/images/recenzie.png"
+         alt="Recenzii Clienti"
+         class="img-fluid rounded shadow-lg mt-3"
+         style="max-height: 400px; width: auto; border: 1px solid #ddd;" />
+</div>
+
+<p>
+    @if (!User.IsInRole("Medic"))
+    {
+        <a asp-page="Create">Create New</a>
+    }
+</p>
+
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recenzie[0].Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recenzie[0].Comentariu)
+            </th>
+            <th>
+                Proprietar
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recenzie[0].DataCreare)
+            </th>
+            <th>
+                Nr. Programare
+            </th>
+            <th>
+                Medic Veterinar
+            </th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recenzie)
+        {
+            <tr>
+                <td>
+                    <span class="badge bg-info text-dark" style="font-size: 1em;">
+                        @Html.DisplayFor(modelItem => item.Rating) / 5
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comentariu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proprietar.Nume)
+                    @Html.DisplayFor(modelItem => item.Proprietar.Prenume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCreare)
+                </td>
+                <td>
+                    @if (item.ProgramareId != null)
+                    {
+                        <span>#@item.ProgramareId</span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">-</span>
+                    }
+                </td>
+                <td>
+                    Dr. @Html.DisplayFor(modelItem => item.MedicVeterinar.Nume)
+                </td>
+                <td>
+                    @if (!User.IsInRole("Medic"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.RecenzieId">Edit</a> <span>|</span>
+                        <a asp-page="./Delete" asp-route-id="@item.RecenzieId">Delete</a> <span>|</span>
+                    }
+                    
+                    <a asp-page="./Details" asp-route-id="@item.RecenzieId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
